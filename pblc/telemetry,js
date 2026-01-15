@@ -1,0 +1,30 @@
+import { kv } from "@vercel/kv";
+
+export default async function handler(request, response) {
+  if (request.method !== "POST") {
+    return response.status(405).send("Método No Permitido");
+  }
+
+  let payload = request.body;
+  if (typeof payload === "string") {
+    payload = JSON.parse(payload);
+  }
+
+  if (!payload?.ts || !payload?.type || !payload?.sessionId) {
+    return response.status(400).send("Solicitud Inválida");
+  }
+
+  await kv.lpush("telemetry:events", JSON.stringify(payload));
+
+  if (payload.type === "widget") {
+    await kv.incrby("telemetry:widgetEvents", 1);
+    await kv.incrby(`telemetry:widget:${payload.widget}:clicks`, 1);
+  }
+
+  if (payload.type === "faces") {
+    await kv.incrby("telemetry:facesEvents", 1);
+    await kv.incrby("telemetry:facesTotal", Number(payload.facesCount || 0));
+  }
+
+  response.status(200).send("Aceptado");
+}

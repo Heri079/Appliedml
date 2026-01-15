@@ -1,0 +1,8 @@
+{
+  "name": "opencv-api-vercel",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@vercel/kv": "^1.0.0"
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>OpenCV.js – Operaciones con Imágenes</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://docs.opencv.org/3.4.0/opencv.js" type="text/javascript"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Demo OpenCV.js: Aritmética de Imágenes</h1>
+    <p>Ejemplo inspirado en tutoriales de OpenCV para operaciones básicas.</p>
+  </header>
+
+  <main>
+    <div class="grid-container">
+      <section class="inputs">
+        <div class="image-panel">
+          <h2>Primera Imagen</h2>
+          <input type="file" id="fileInput1" accept="image/*" />
+          <canvas id="canvasInput1"></canvas>
+        </div>
+        <div class="image-panel">
+          <h2>Segunda Imagen</h2>
+          <input type="file" id="fileInput2" accept="image/*" />
+          <canvas id="canvasInput2"></canvas>
+        </div>
+      </section>
+
+      <section class="controls sidebar">
+        <h2>Controles</h2>
+        <div class="buttons">
+          <button id="btnAdd">Sumar</button>
+          <button id="btnSub">Restar</button>
+          <button id="btnAnd">AND</button>
+          <button id="btnOr">OR</button>
+          <button id="btnXor">XOR</button>
+        </div>
+        <div class="blend-control">
+          <label for="alphaSlider">Mezcla (α): <span id="alphaValue">0.50</span></label>
+          <input type="range" id="alphaSlider" min="0" max="1" step="0.01" value="0.5" />
+          <button id="btnBlend">Mezclar</button>
+        </div>
+        <div class="buttons">
+          <button id="btnFaceDetect">Detectar Rostros (Img 1)</button>
+        </div>
+        <p class="status" id="telemetryInfo"></p>
+      </section>
+
+      <section class="output">
+        <h2>Salida</h2>
+        <canvas id="canvasOutput"></canvas>
+      </section>
+    </div>
+
+    <section class="status">
+      <p id="status">Sube imágenes y elige una operación.</p>
+    </section>
+  </main>
+
+  <footer>
+    <small>
+      Basado en <a href="https://docs.opencv.org/3.4/dd/d4d/tutorial_js_image_arithmetics.html" target="_blank" rel="noopener">Tutorial de OpenCV</a>.
+    </small>
+  </footer>
+</body>
+</html>
